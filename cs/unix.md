@@ -117,7 +117,6 @@
 ```chkconfig oracle off``` : Turning off start on boot for oracle service \
 ```chkconfig --level 5 oracle``` : Set /etc/rc.d/* level to enable service managment
 
-
 ### 🚇 SSH
 
 ```ssh-keygen``` : Generate a pair of ssh private and public keys\
@@ -125,6 +124,10 @@
 ```echo -n hello; ssh -q -o "ConnectTimeout=1" user@host``` : Execute remote command trought ssh\
 ```scp -r files user@hostname:/path``` : Send file to remote host with scp\
 ```scp -r user@hostname:/file /path``` : Download file form remote host with scp\
+
+### System Informations
+
+```cat /sys/class/dmi/id/product_name``` : Get the information about whether a host is virtual or physical
 
 ### 📟 Terminal
 
