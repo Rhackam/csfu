@@ -124,10 +124,11 @@
 ```echo -n hello; ssh -q -o "ConnectTimeout=1" user@host``` : Execute remote command trought ssh\
 ```scp -r files user@hostname:/path``` : Send file to remote host with scp\
 ```scp -r user@hostname:/file /path``` : Download file form remote host with scp\
+```ssh -L 8081:host.name:80 admin@host.name``` : Create SSH tunnel and binding local ``8081`` port to remote ``80`` port
 
-### System Informations
+### 🥥 System Informations
 
-```cat /sys/class/dmi/id/product_name``` : Get the information about whether a host is virtual or physical
+```cat /sys/class/dmi/id/product_name``` : Get the information about whether a host is virtual or physical\
 
 ### 📟 Terminal
 
