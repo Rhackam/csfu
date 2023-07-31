@@ -1,18 +1,26 @@
-## :shell: Pure Shell
+![image](https://github.com/Rhackam/csfu/assets/80326553/e0dca7e7-833e-44ee-bdb4-c4d126622b0a)## :shell: Pure Shell
 ### 📚 Compress file
 
 ```tar -czf archive_name.tar.gz files``` : Compress file with tar \
 ```tar -xzf archive_name.tar.gz files``` : Decompress file with tar \
 ```du -sh /var/log/* | grep 'G' | xargs gzip``` : Piping file to compress into xargs
 
-### 🔤 Char
+### 🔤 Char manipulation & regexp
 
 ```sed -i '/^$/d'``` : Delete blank line\
 ```sed -i 's/, [A-Za-z0-9:., ]*//'``` : Delete string after ``,``\
 ```sed -i 's/[A-Z]/\L&/g'``` : Lowercase strings with ``sed`` \
 ```sed -i 's/[a-z]/\U&/g'``` : Uppercase strings with ``sed`` \
 ```sed -i 's/_.*$//'``` : Delete any strings passed between ``\`` and ``.`` \
-```grep 'golang-1.15\|yarn'``` : search for one or other patern \
+
+```grep 'golang-1.15\|yarn'``` : Search for one or other patern \
+
+```awk -i file``` : Edit file inplace \
+```awk '!a[$0]++' file``` : Avoid printing duplicates values \
+```awk '{print $0","}' | tr -d "\d"``` : Add character at the end of each line and sum up on oneline
+
+```tail -n +100``` : Start printing after line n \
+
 ```(\b25[0-5]|\b2[0-4][09]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}``` : IP Address regex
 
 ### 🗓 Date
@@ -35,7 +43,8 @@
 ```vgcreate vg_name /dev/sda1 /dev/sda2``` : Create a volume group by adding two different disk partitions \
 ```vgextend vg_name /dev/sda2``` : Extend volume groupe (require new disk partition) \
 ```vgremove vg_name``` : Delete volume groupe \
-```vgreduce vg_name /dev/sda1``` : Reduce volume groupe disk use \
+```vgreduce vg_name /dev/sda1``` : Reduce volume group disk use \
+```vgchange -a n vgname``` : Deactivating volume group \
 ```vgs``` : Display volumes group
 
 ```lvcreate -L 40G -n lv_name vg_name``` : Create logical voulme on a volume group \
@@ -51,9 +60,18 @@
 ```echo 1 > /sys/class/block/sdd/device/rescan``` : Rescan volumes for existing disk \
 ```echo "- - -" > /sys/class/scsi_host/host0/scan``` : Rescan devices list to update new disk
 
+```showmount --exports 10.10.10.2``` : List share available on remote server \
+```rpcinfo -u 10.10.10.2 mountd``` : Check ``mountd`` service status \
+```rpcinfo -u 10.10.10.2 nfs``` : Check ``nfs`` service status
+
 ### 📡 Network
 
+```nmcli con show``` : Display connection using nmcli \
+```nmcli con -f DEVICE,TYPE device``` : Display connection for a device and filter columns using nmcli \
+```nmcli dev status``` : Display device status using nmcli 
+
 ```ip -s -s neigh flush all``` : Flush arp table (sudo)\
+
 ```for i in $(cat host); do ping -W 1 -c 1 $i 1>/dev/null 2>&1; echo $i $?; done``` : Online script to test if host is up \
 ```for i in $(cat host); do ping -c 1 $i | grep -Eo -m 1 '(\b25[0-5]|\b2[0-4][09]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}'; done```
 
@@ -65,12 +83,13 @@
 
 ```cat file | wc -l``` : Count line in file
 
-```find -type [fcdl]``` : Search for file type ``f`` regular file, ``c`` charcter, ``d`` directory, ``l`` symbolic link \
-```find -name tute``` : Search for anything matching tute \
-```find -size +20k -size -50k``` : Search for anything matching a size between 20KiB and 50BiB \
-```find -newer[am at cm ct mm mt] 2022-15-05``` \
-```find -atime +1``` : Search for files last accessed (read) for 2 day \
-```find -name tute -exec ls -lt {} +``` : Use exec and ls to list files
+```find . -type [fcdl]``` : Search for file type ``f`` regular file, ``c`` charcter, ``d`` directory, ``l`` symbolic link \
+```find . -name tute``` : Search for anything matching tute \
+```find . -size +20k -size -50k``` : Search for anything matching a size between 20KiB and 50BiB \
+```find . -newer[am at cm ct mm mt] 2022-15-05``` \
+```find . -atime +1``` : Search for files last accessed (read) for 2 day \
+```find . -name tute -exec ls -lt {} +``` : Use exec and ls to list files \
+```find . -name tute -exec rm -rf {} \;``` : Use exec and rm to delete files 
  
 ### 📦 Packet Manager (RHEL/CentOS)
 
@@ -81,7 +100,7 @@
 ```subscription-manager repos --enable=repos_name``` : Activation d'un repository yum \
 ```subscription-manager repos --disable=repos_name``` : Désactivation d'un repository yum
 
-### ⏳ Processus
+### ⏳ Process
 
 ```ps -ef``` : Display all system process
 
