@@ -1,4 +1,4 @@
-# Services Cheatsheet
+![image](https://github.com/Rhackam/csfu/assets/80326553/c41e33b9-95cc-443e-8d09-228069416487)# Services Cheatsheet
 
 ## :octocat: Git
 ```git branch d name``` : Delete branch \
@@ -32,7 +32,8 @@
 
 ## :eye: Nmap
 
-```nping --rate=5 172.16.5.0/16``` : Fast scan entire subnet
+```nping --rate=5 172.16.5.0/16``` : Fast scan entire subnet \
+```nc -w1 -i1 $1 22``` : Check if a port is open on remote host with nc 
 
 ## :spider_web: Web servers tricks
 - DNS
@@ -73,6 +74,9 @@ Docker **daemon** config file located at ``/etc/docker/daemon.log`` (need to res
 Docker proxy config file located at ``/etc/systemd/system/docker.service.d/http-proxy.conf``
 
 ## 🛠 Ansible
+
+```ansible-playbook pb.yaml --tags "config"
+
 - YAML Syntax
 
 ```raw: "sudo echo \"wrld\"``` Escaping ``"`` inside modules
