@@ -1,27 +1,29 @@
-![image](https://github.com/Rhackam/csfu/assets/80326553/e0dca7e7-833e-44ee-bdb4-c4d126622b0a)## :shell: Pure Shell
+## :shell: Pure Shell
 ### 📚 Compress file
 
 ```tar -czf archive_name.tar.gz files``` : Compress file with tar \
 ```tar -xzf archive_name.tar.gz files``` : Decompress file with tar \
 ```du -sh /var/log/* | grep 'G' | xargs gzip``` : Piping file to compress into xargs
 
-### 🔤 Char manipulation & regexp
+### 🔤 Sed Awk & Grep
 
 ```sed -i '/^$/d'``` : Delete blank line\
 ```sed -i 's/, [A-Za-z0-9:., ]*//'``` : Delete string after ``,``\
 ```sed -i 's/[A-Z]/\L&/g'``` : Lowercase strings with ``sed`` \
 ```sed -i 's/[a-z]/\U&/g'``` : Uppercase strings with ``sed`` \
-```sed -i 's/_.*$//'``` : Delete any strings passed between ``\`` and ``.`` \
+```sed -i 's/_.*$//'``` : Delete any strings passed between ``\`` and ``.``
 
-```grep 'golang-1.15\|yarn'``` : Search for one or other patern \
+```grep 'golang-1.15\|yarn'``` : Search for one or other patern
 
 ```awk -i file``` : Edit file inplace \
 ```awk '!a[$0]++' file``` : Avoid printing duplicates values \
 ```awk '{print $0","}' | tr -d "\d"``` : Add character at the end of each line and sum up on oneline
 
-```tail -n +100``` : Start printing after line n \
+```tail -n +100``` : Start printing after line n
 
-```(\b25[0-5]|\b2[0-4][09]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}``` : IP Address regex
+```(\b25[0-5]|\b2[0-4][09]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}``` : IP Address regex \
+```(\d{1,3}\.){3}\d{1,3})``` : IP Address regex
+
 
 ### 🗓 Date
 
@@ -63,6 +65,8 @@
 ```showmount --exports 10.10.10.2``` : List share available on remote server \
 ```rpcinfo -u 10.10.10.2 mountd``` : Check ``mountd`` service status \
 ```rpcinfo -u 10.10.10.2 nfs``` : Check ``nfs`` service status
+
+```lshw -class disk``` : Print hardware disk devices
 
 ### 📡 Network
 
@@ -152,7 +156,8 @@
 ### 📟 Terminal
 
 ```echo "$SHELL"``` : Check wich shell you're using \
-```history -d 152``` : Delete history entry
+```history -d 152``` : Delete history entry \
+```trap ':' INT``` : 
 
 ### 👱‍♂️ Users
 
