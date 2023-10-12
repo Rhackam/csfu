@@ -54,7 +54,7 @@
 
 - Interact with ``smb`` service
 
-```smbclient -L \\\\10.10.10.10\\ -N``` : List samba shares\
+```smbclient -L \\\\10.10.10.10\\ -N``` : List samba shares \
 ```smbclient \\\\10.10.10.10\\share\\ -N``` : Connect to samba share use (``cd``, ``ls`` and ``get`` to interact)
 
 ## 🧊 Redis
@@ -124,11 +124,38 @@ Docker proxy config file located at ``/etc/systemd/system/docker.service.d/http-
 
 ## 🛠 Ansible
 
-```ansible-playbook pb.yaml --tags "config"
+```ansible-playbook pb.yaml --tags "config"``` : Excute step from config tag
 
 - YAML Syntax
 
 ```raw: "sudo echo \"wrld\"``` Escaping ``"`` inside modules
 
 ## PM2
+
 ```pm2 start npm --name tcportfolio.net -- run develop```
+
+## Vim Combo
+
+```.,$d``` : \
+```:g/abc/cba``` : Find and replace
+
+## UNIX Keyboards Combo
+
+<kbd>Ctrl</kbd> + <kbd>A</kbd> : Go to start of prompt \
+<kbd>Ctrl</kbd> + <kbd>E</kbd> : Go to end of prompt \
+<kbd>Ctrl</kbd> + <kbd>R</kbd> : Search into shell history \
+<kbd>Ctrl</kbd> + <kbd>O</kbd> : Execute searched command \
+<kbd>Ctrl</kbd> + <kbd>U</kbd> : Delete line before cursor \
+<kbd>Ctrl</kbd> + <kbd>K</kbd> : Delete line after cursor \
+<kbd>Ctrl</kbd> + <kbd>W</kbd> : Delete previous word \
+<kbd>Alt</kbd> + <kbd>B</kbd> : Backward one word
+
+## Windows Keyboard Combo
+<kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>&larr;</kbd>/<kbd>&rarr;</kbd> : Move window to left or right screen \
+<kbd>Alt</kbd> + <kbd>Tab</kbd> : Switch between windows \
+<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Pause</kbd> : Toggle windows RDP session
+
+## VSCode Keyboads Combo
+
+<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> : Execute hilighted text \
+<kbd>Ctrl</kbd> + <kbd>T</kbd> : Toggle terminal
