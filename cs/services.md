@@ -1,17 +1,64 @@
-![image](https://github.com/Rhackam/csfu/assets/80326553/c41e33b9-95cc-443e-8d09-228069416487)# Services Cheatsheet
+# Services Cheatsheet
 
 ## :octocat: Git
+
 ```git branch d name``` : Delete branch \
 ```git branch -r``` : List remote branch \
 ```git branch``` : List local branch
 
+## 📫 POP3
+
+```telnet pop.gmx.net 110``` : Connect to POP3 server on port ```110``` \
+```USER user``` : Ask for username \
+```PASS user``` : Ask for password \
+```LIST``` : List mails \
+```RETR 1``` : Read mails 
+
+## ➰ Curl
+
+```curl -u username:password http://10.10.10.10.:8080/``` : Basic Auth \
+```curl -s -A "Mozilla/5.0 ..." http://10.10.202.138``` : Change user agent \
+```curl -s --referer "tute.com" http://10.10.202.138/url/``` : Change referer
+
+- Cookie
+  
+```curl -s --cookie "Invited=1" http://10.10.202.138/``` : Overwrite cookie \
+```curl -v --cookie-jar cookies.txt --form username=user --form password=pwd http://10.10.202.138/login/``` : Save login session cookie \
+```curl -v -b cookies.txt http://10.10.202.138/login``` : Use previous saved cookie
+
+
+## ⚓ Kubernetes
+
+```kubeadm init``` : Initialize kubernetes cluster
+
+- Images
+  
+```kubectl config images pull --image-repository``` : Specify repository where to pull images
+
+- Ressources Query
+  
+```kubectl get pods -A -o wide``` : List all pods in any namespaces \
+```kubectl get services -A``` : List all services in any namespaces 
+
+- Ressources Manipulation
+  
+```kubectl exec pod_name -it -- /bin/sh```: Pop into a pods and get a shell \
+```kubectl delete ressource_type ressource_name``` : Delete cluster ressource (pods, deployment, secret, service, ...) \
+```kubectl scale deployment dep_name --replicas=1``` : Scale down or up replicas for given pod \
+```kubectl rollout undo deployment/app --to-revision=2``` : Rollout deployment \
+```kubectl logs -f pod_name``` : Get stream log for given pod \
+
+```crictl --runtime-endpoint /var/run/containerd/containerd.sock ps```
+
 ## 🪟 Samba
+
 - Interact with ``smb`` service
 
 ```smbclient -L \\\\10.10.10.10\\ -N``` : List samba shares\
 ```smbclient \\\\10.10.10.10\\share\\ -N``` : Connect to samba share use (``cd``, ``ls`` and ``get`` to interact)
 
 ## 🧊 Redis
+
 - Interact with redis keystore
 
 ```KEYS *``` : List keys \
@@ -19,6 +66,7 @@
 ```LRANGE key 1 10``` : Get a range of key values (1 to 10)
 
 ## :dolphin: MySQL
+
 - Manipulate DB and tables
 
 ```SHOW DATABASES;``` : Display all database\
@@ -30,17 +78,14 @@
 ```mysql -u user -p db_name``` : Log in the default root or into the desired database\
 ```mysqldump -u user -p db_name > file.sql``` : Dump the database content into an output file
 
-## :eye: Nmap
-
-```nping --rate=5 172.16.5.0/16``` : Fast scan entire subnet \
-```nc -w1 -i1 $1 22``` : Check if a port is open on remote host with nc 
-
 ## :spider_web: Web servers tricks
+
 - DNS
 
 ```ls TLD_Extension | awk '{print $0".TLD_Extension"}' | xargs -n 1 host -t A``` : Look for any site in a sub-directory and add the TLD extension. Then perform a ```host``` command and get the server IP address.
 
 ## :whale: Docker
+
 - Manipulate containers
 
 ```docker run -d -p 5000:5000 --name image_tag tag:version``` : Run container with docker image\
@@ -72,6 +117,10 @@
 
 Docker **daemon** config file located at ``/etc/docker/daemon.log`` (need to restart daemon after editing)\
 Docker proxy config file located at ``/etc/systemd/system/docker.service.d/http-proxy.conf``
+
+## 🐘 Hadoop
+
+```hdfs fsck / | egrep -v '^\.+ | grep -v replica | grep -v Replica``` : Check health of hdfs cluster
 
 ## 🛠 Ansible
 
