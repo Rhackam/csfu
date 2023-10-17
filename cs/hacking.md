@@ -142,11 +142,18 @@ app.get("/about/:language", function(req, res) {
 
 ```gcc bow.c -o bow32 -fno-stack-protector -z execstack -m32``` : Compile code to make it executable
 
-```gdb -q bow32``` : Enable debuggin of program\
+- Gdb
+  
+```gdb -q bow32``` : Enable debuggin of program \
 ```(gdb) set disassembly-flavor intel``` :  Makes the disassembled representation easier to read into gdb \
-```(gdb) disas main``` : Inspect the ``main`` function into gdb\
+```(gdb) info func``` : List functions \
+```(gdb) disas main``` : Inspect the ``main`` function into gdb \
+```(gdb) run 2``` : Run program \
 ```(gdb) info registers [eip ...]``` : Display registers informations about program into gdb \
-```(gdb) x/2000xb $esp+550``` : Jump below the top of the stack 
+```(gdb) x/2000xb $esp+550``` : Jump below the top of the stack \
+```(gdb) x/s 0x0000...``` : Read value for given address \
+```(gdb) breakpoint *0x0000...``` : Set breakpoint at given address \
+```(gdb) next intruction``` : Jump program address one by one
 
 ```$(python -c 'print "\x55" * (1040 - 256 - 4) + "\x00\x01\x02\x03\x04\x05...<SNIP>...\xfc\xfd\xfe\xff" + "\x66" * 4')``` : Buffer overflow pyhton snippet
 
