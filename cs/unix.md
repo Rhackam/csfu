@@ -79,12 +79,6 @@
 ```for i in $(cat host); do ping -W 1 -c 1 $i 1>/dev/null 2>&1; echo $i $?; done``` : Online script to test if host is up \
 ```for i in $(cat host); do ping -c 1 $i | grep -Eo -m 1 '(\b25[0-5]|\b2[0-4][09]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}'; done```
 
-### 🧲 Http
-
-```curl -k http://test.com``` : Allow insecure connexions \
-```curl -X GET|POST http://test.com``` : Request web server \
-```curl -v --cacert /etc/pki/tls/certs/ca-bundle.crt https://test.com``` : Use specific key chain \
-
 ### 🗺 Search and Path
 
 ```ln -s /path/to/link/ /link/name/```
