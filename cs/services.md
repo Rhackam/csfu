@@ -14,19 +14,6 @@
 ```LIST``` : List mails \
 ```RETR 1``` : Read mails 
 
-## ➰ Curl
-
-```curl -u username:password http://10.10.10.10.:8080/``` : Basic Auth \
-```curl -s -A "Mozilla/5.0 ..." http://10.10.202.138``` : Change user agent \
-```curl -s --referer "tute.com" http://10.10.202.138/url/``` : Change referer
-
-- Cookie
-  
-```curl -s --cookie "Invited=1" http://10.10.202.138/``` : Overwrite cookie \
-```curl -v --cookie-jar cookies.txt --form username=user --form password=pwd http://10.10.202.138/login/``` : Save login session cookie \
-```curl -v -b cookies.txt http://10.10.202.138/login``` : Use previous saved cookie
-
-
 ## ⚓ Kubernetes
 
 ```kubeadm init``` : Initialize kubernetes cluster
