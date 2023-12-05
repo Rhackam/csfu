@@ -74,7 +74,9 @@
 ```nmcli con -f DEVICE,TYPE device``` : Display connection for a device and filter columns using nmcli \
 ```nmcli dev status``` : Display device status using nmcli 
 
+```ip -o -4 a``` : List ip interface \
 ```ip -s -s neigh flush all``` : Flush arp table (sudo)\
+```ip route add 10.20.0.0/16 via 192.168.1.254 dev ens192 proto static``` : Create static route
 
 ```for i in $(cat host); do ping -W 1 -c 1 $i 1>/dev/null 2>&1; echo $i $?; done``` : Online script to test if host is up \
 ```for i in $(cat host); do ping -c 1 $i | grep -Eo -m 1 '(\b25[0-5]|\b2[0-4][09]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}'; done```
