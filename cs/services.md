@@ -113,6 +113,15 @@ Docker proxy config file located at ``/etc/systemd/system/docker.service.d/http-
 
 ```ansible-playbook pb.yaml --tags "config"``` : Excute step from config tag
 
+- Vault
+
+```ansible-vault create vars/secure.yaml``` : Create simple ansible vault \
+```ansible-vault edit vars/secure.yaml``` : Edit vault without clear decrypt it \
+```ansible-vault rekey vars/secure.yaml``` : Change vault password \
+```ansible-vault encrypt vars/secure.yaml``` : Encrypt file into a vault \
+```ansible-vault decrypt vars/secure.yaml``` : Decrypt ansible vault \
+```ansible-vault view vars/secure.yaml``` : Show vault content
+
 - YAML Syntax
 
 ```raw: "sudo echo \"wrld\"``` Escaping ``"`` inside modules
