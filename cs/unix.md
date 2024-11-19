@@ -7,23 +7,28 @@
 
 ### 🔤 Sed Awk & Grep
 
+- Sed\
 ```sed -i '/^$/d'``` : Delete blank line\
 ```sed -i 's/, [A-Za-z0-9:., ]*//'``` : Delete string after ``,``\
 ```sed -i 's/[A-Z]/\L&/g'``` : Lowercase strings with ``sed`` \
 ```sed -i 's/[a-z]/\U&/g'``` : Uppercase strings with ``sed`` \
-```sed -i 's/_.*$//'``` : Delete any strings passed between ``\`` and ``.``
+```sed -i 's/_.*$//'``` : Delete any strings passed between ``\`` and ``.`` \
+```sed -i 's/SEARCH_REGEX/REPLACEMENT/g'``` : Search and replace \
 
+- Grep\
 ```grep 'golang-1.15\|yarn'``` : Search for one or other patern
 
+- AWK\
 ```awk -i file``` : Edit file inplace \
 ```awk '!a[$0]++' file``` : Avoid printing duplicates values \
 ```awk '{print $0","}' | tr -d "\d"``` : Add character at the end of each line and sum up on oneline
 
+- Tail\
 ```tail -n +100``` : Start printing after line n
 
+- Regexp\
 ```(\b25[0-5]|\b2[0-4][09]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}``` : IP Address regex \
 ```(\d{1,3}\.){3}\d{1,3})``` : IP Address regex
-
 
 ### 🗓 Date
 
@@ -67,6 +72,11 @@
 ```rpcinfo -u 10.10.10.2 nfs``` : Check ``nfs`` service status
 
 ```lshw -class disk``` : Print hardware disk devices
+
+### 🌐 DNS
+
+- DIG\
+```dig +dnssec @8.8.8.8 +short +DS``` : check DNSSEC signature for a given nameserver
 
 ### 📡 Network
 
@@ -118,12 +128,30 @@
 ```ipcrm -s semid``` : Remove semaphore ipc V \
 ```ipcs -s | grep procname | awk '{printf( "-s %s ", $2 )}' | xargs ipcrm``` : Clean semaphore for a process (``-m`` for shared memory)
 
+### 📑 Log Managment
+
+```syslog-ng -Fvde -f /path/to/first.conf``` : run and validate syslog-ng config
+
 ### 🔒 Security
 
+- UFW\
+```ufw allow from 10.181.13.1 to any port 22 proto tcp```\
+
+- Firewalld\
 ```firewall-cmd --get-zones``` : Display configured zones\
 ```firewall-cmd --list-all --zone=public``` : Display `public` zone paramerters\
 ```firewall-cmd --zone=public --permanent --add-service=https``` : Whitelist `https` service for `public` zone\
+
+- SELinux\
+```semanage port --list``` : List filtered ports \
+```semanage port -a -t -p 1997``` : Allow port \
+
+- PAM\
 ```pam_tally2 --reset --user tute``` : Unlock ssh UNIX account
+
+### 🏫 Certificates
+
+```openssl x509 -enddate -noout -in``` : Check expiration date for a given certificate \
 
 ### 📥 Send or Download files
 
@@ -149,11 +177,19 @@
 ```echo -n hello; ssh -q -o "ConnectTimeout=1" user@host``` : Execute remote command trought ssh\
 ```scp -r files user@hostname:/path``` : Send file to remote host with scp\
 ```scp -r user@hostname:/file /path``` : Download file form remote host with scp\
-```ssh -L 8081:host.name:80 admin@host.name``` : Create SSH tunnel and binding local ``8081`` port to remote ``80`` port
+```ssh -L 8081:host.name:80 admin@host.name``` : Create SSH tunnel and binding local ``8081`` port to remote ``80`` port \
+```ssh -q host 'bash -s' < script.sh``` : Remote script execution \
+```eval $(ssh-agent) && ssh-add id_rsa``` : Enable ssh-agent \
+
+- Options\
+```-o HostKeyAlgorithms=+ssh-dss``` : force the use of certains Algo for connection
 
 ### 🥥 System Informations
 
 ```cat /sys/class/dmi/id/product_name``` : Get the information about whether a host is virtual or physical\
+
+- SNMP\
+```snmpwalk -v3 -l authPriv -u UserMe -a SHA -A AuthPass1 -x AES -X PrivPass2 192.168.1.1 1.3.6.1.2.1.1``` : List OIDs
 
 ### 📟 Terminal
 
